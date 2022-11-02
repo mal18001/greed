@@ -97,7 +97,7 @@ namespace Greed
                 falling_objects.SetFontSize(FONT_SIZE);
                 falling_objects.SetColor(color);
                 falling_objects.SetPosition(position);
-                falling_objects.SetScore(1);
+                falling_objects.SetScore(-1);
                 cast.AddActor("falling_objects", falling_objects);
             }
 
