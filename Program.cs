@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unit04.Game.Casting;
-using Unit04.Game.Directing;
-using Unit04.Game.Services;
+using Greed.Game.Casting;
+using Greed.Game.Directing;
+using Greed.Game.Services;
 
 
-namespace Unit04
+namespace Greed
 {
     /// <summary>
     /// The program's entry point.
@@ -21,10 +21,10 @@ namespace Unit04
         private static int FONT_SIZE = 15;
         private static int COLS = 60;
         private static int ROWS = 40;
-        private static string CAPTION = "Robot Finds Kitten";
-        private static string DATA_PATH = "Data/messages.txt";
+        private static string CAPTION = "Greed";
+
         private static Color WHITE = new Color(255, 255, 255);
-        private static int DEFAULT_ARTIFACTS = 40;
+        private static int DEFAULT = 20;
 
 
         /// <summary>
@@ -52,33 +52,53 @@ namespace Unit04
             robot.SetPosition(new Point(MAX_X / 2, MAX_Y / 2));
             cast.AddActor("robot", robot);
 
-            // load the messages
-            List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
 
             // create the artifacts
             Random random = new Random();
-            for (int i = 0; i < DEFAULT_ARTIFACTS; i++)
+            for (int i = 0; i < DEFAULT; i++)
             {
-                string text = ((char)random.Next(33, 126)).ToString();
-                string message = messages[i];
+                string text = ((char)(42)).ToString();
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
 
-                int r = random.Next(0, 256);
-                int g = random.Next(0, 256);
-                int b = random.Next(0, 256);
+                int r = 1;
+                int g = 255;
+                int b = 1;
                 Color color = new Color(r, g, b);
 
-                Artifact artifact = new Artifact();
-                artifact.SetText(text);
-                artifact.SetFontSize(FONT_SIZE);
-                artifact.SetColor(color);
-                artifact.SetPosition(position);
-                artifact.SetMessage(message);
-                cast.AddActor("artifacts", artifact);
+                Falling_objects falling_objects = new Falling_objects();
+                falling_objects.SetText(text);
+                falling_objects.SetFontSize(FONT_SIZE);
+                falling_objects.SetColor(color);
+                falling_objects.SetPosition(position);
+                falling_objects.SetScore(1);
+                cast.AddActor("falling_objects", falling_objects);
+            }
+
+            for (int i = 0; i < DEFAULT; i++)
+            {
+                string text = ((char)(111)).ToString();
+
+                int x = random.Next(1, COLS);
+                int y = random.Next(1, ROWS);
+                Point position = new Point(x, y);
+                position = position.Scale(CELL_SIZE);
+
+                int r = 255;
+                int g = 1;
+                int b = 1;
+                Color color = new Color(r, g, b);
+
+                Falling_objects falling_objects = new Falling_objects();
+                falling_objects.SetText(text);
+                falling_objects.SetFontSize(FONT_SIZE);
+                falling_objects.SetColor(color);
+                falling_objects.SetPosition(position);
+                falling_objects.SetScore(1);
+                cast.AddActor("falling_objects", falling_objects);
             }
 
             // start the game

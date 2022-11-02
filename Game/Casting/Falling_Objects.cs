@@ -1,4 +1,4 @@
-namespace Unit04.Game.Casting
+namespace Greed.Game.Casting
 {
     /// <summary>
     /// <para>An item of cultural or historical interest.</para>
@@ -6,33 +6,32 @@ namespace Unit04.Game.Casting
     /// The responsibility of an Artifact is to provide a message about itself.
     /// </para>
     /// </summary>
-    public class Artifact : Actor
+    public class Falling_objects : Actor
     {
-        private string _message = "";
-
+        private int score = 0;
         /// <summary>
-        /// Constructs a new instance of an Artifact.
+        /// Constructs a new instance of an falling object.
         /// </summary>
-        public Artifact()
+        public Falling_objects()
         {
         }
 
         /// <summary>
-        /// Gets the artifact's message.
+        /// Gets the falling object's score.
         /// </summary>
         /// <returns>The message.</returns>
-        public string GetMessage()
+        public int GetScore()
         {
-            return _message;
+            return score;
         }
 
         /// <summary>
-        /// Sets the artifact's message to the given value.
+        /// Sets the falling object's score to the given value.
         /// </summary>
-        /// <param name="message">The given message.</param>
-        public void SetMessage(string message)
+        /// <param name="score">The given score.</param>
+        public void SetScore(int score)
         {
-            this._message = message;
+            this.score = score;
         }
     }
 }

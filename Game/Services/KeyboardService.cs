@@ -1,8 +1,8 @@
 using Raylib_cs;
-using Unit04.Game.Casting;
+using Greed.Game.Casting;
 
 
-namespace Unit04.Game.Services
+namespace Greed.Game.Services
 {
     /// <summary>
     /// <para>Detects player input.</para>
@@ -52,6 +52,17 @@ namespace Unit04.Game.Services
             {
                 dy = 1;
             }
+
+            Point direction = new Point(dx, dy);
+            direction = direction.Scale(_cellSize);
+
+            return direction;
+        }
+
+        public Point MoveFalling_objects()
+        {
+            int dx = 0;
+            int dy = 1;
 
             Point direction = new Point(dx, dy);
             direction = direction.Scale(_cellSize);
