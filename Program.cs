@@ -22,9 +22,7 @@ namespace Greed
         private static int COLS = 60;
         private static int ROWS = 40;
         private static string CAPTION = "Greed";
-
         private static Color WHITE = new Color(255, 255, 255);
-        private static int DEFAULT = 20;
 
 
         /// <summary>
@@ -44,61 +42,42 @@ namespace Greed
             banner.SetPosition(new Point(CELL_SIZE, 0));
             cast.AddActor("banner", banner);
 
-            // create the robot
-            Actor robot = new Actor();
-            robot.SetText("#");
-            robot.SetFontSize(FONT_SIZE);
-            robot.SetColor(WHITE);
-            robot.SetPosition(new Point(MAX_X / 2, MAX_Y / 2));
-            cast.AddActor("robot", robot);
+            // create the player
+            Actor player = new Actor();
+            player.SetText("#");
+            player.SetFontSize(FONT_SIZE);
+            player.SetColor(WHITE);
+            player.SetPosition(new Point(MAX_X / 2, 585));
+            cast.AddActor("player", player);
+
 
 
             // create the artifacts
             Random random = new Random();
-            for (int i = 0; i < DEFAULT; i++)
+            //**CHANGE THE FOR STATEMENT TO A LOOP THAT
+            //**WILL BE INFINITE, CHANGE SPEED BASED ON POINTS,
+            //**AND END WHEN POINTS ARE TOO LOW
+
             {
-                string text = ((char)(42)).ToString();
+                //REPLACE LINE WITH SPRITE/SYMBOL FOR ROCK OR GEM
+                string text = ((char)random.Next(33, 126)).ToString();
 
                 int x = random.Next(1, COLS);
-                int y = random.Next(1, ROWS);
+                int y = 0;
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
 
-                int r = 1;
-                int g = 255;
-                int b = 1;
+                int r = random.Next(0, 256);
+                int g = random.Next(0, 256);
+                int b = random.Next(0, 256);
                 Color color = new Color(r, g, b);
 
-                Falling_objects falling_objects = new Falling_objects();
-                falling_objects.SetText(text);
-                falling_objects.SetFontSize(FONT_SIZE);
-                falling_objects.SetColor(color);
-                falling_objects.SetPosition(position);
-                falling_objects.SetScore(1);
-                cast.AddActor("falling_objects", falling_objects);
-            }
-
-            for (int i = 0; i < DEFAULT; i++)
-            {
-                string text = ((char)(111)).ToString();
-
-                int x = random.Next(1, COLS);
-                int y = random.Next(1, ROWS);
-                Point position = new Point(x, y);
-                position = position.Scale(CELL_SIZE);
-
-                int r = 255;
-                int g = 1;
-                int b = 1;
-                Color color = new Color(r, g, b);
-
-                Falling_objects falling_objects = new Falling_objects();
-                falling_objects.SetText(text);
-                falling_objects.SetFontSize(FONT_SIZE);
-                falling_objects.SetColor(color);
-                falling_objects.SetPosition(position);
-                falling_objects.SetScore(-1);
-                cast.AddActor("falling_objects", falling_objects);
+                FallingObject fallingObject = new FallingObject();
+                fallingObject.SetText(text);
+                fallingObject.SetFontSize(FONT_SIZE);
+                fallingObject.SetColor(color);
+                fallingObject.SetPosition(position);
+                cast.AddActor("fallingObject", fallingObject);
             }
 
             // start the game

@@ -46,50 +46,50 @@ namespace Greed.Game.Directing
         }
 
         /// <summary>
-        /// Gets directional input from the keyboard and applies it to the robot.
+        /// Gets directional input from the keyboard and applies it to the player.
         /// </summary>
         /// <param name="cast">The given cast.</param>
 
         private void GetInputs(Cast cast)
         {
-            List<Actor> falling_object = cast.GetActors("falling_object");
-            foreach (Actor actor in falling_object)
+            List<Actor> fallingObject = cast.GetActors("fallingObject");
+            foreach (Actor actor in fallingObject)
             {
-                Point objvelocity = _keyboardService.MoveFalling_objects();
+                Point objvelocity = _keyboardService.MoveFallingObject();
                 actor.SetVelocity(objvelocity);
                 int maxX = _videoService.GetWidth();
                 int maxY = _videoService.GetHeight();
                 actor.MoveNext(maxX, maxY);
             }
-            Actor robot = cast.GetFirstActor("robot");
+            Actor player = cast.GetFirstActor("player");
             Point velocity = _keyboardService.GetDirection();
-            robot.SetVelocity(velocity);
+            player.SetVelocity(velocity);
         }
 
         /// <summary>
-        /// Updates the robot's position and resolves any collisions with artifacts.
+        /// Updates the player's position and resolves any collisions with artifacts.
         /// </summary>
         /// <param name="cast">The given cast.</param>
         private void DoUpdates(Cast cast)
         {
 
             Actor banner = cast.GetFirstActor("banner");
-            Actor robot = cast.GetFirstActor("robot");
-            List<Actor> falling_object = cast.GetActors("falling_object");
+            Actor player = cast.GetFirstActor("player");
+            List<Actor> fallingObject = cast.GetActors("fallingObject");
 
             banner.SetText($"Score: {score.ToString()}");
             int maxX = _videoService.GetWidth();
             int maxY = _videoService.GetHeight();
-            robot.MoveNext(maxX, maxY);
+            player.MoveNext(maxX, maxY);
 
             Random random = new Random();
-            foreach (Actor actor in falling_object)
+            foreach (Actor actor in fallingObject)
             {
 
-                if (robot.GetPosition().Equals(actor.GetPosition()))
+                if (player.GetPosition().Equals(actor.GetPosition()))
                 {
-                    Falling_objects falling_objects = (Falling_objects)actor;
-                    score += falling_objects.GetScore();
+                    FallingObject fallingObject = (FallingObject)actor;
+                    score += fallingObject.GetScore();
                     banner.SetText($"Score: {score.ToString()}");
 
                     int x = random.Next(1, 60);
@@ -97,7 +97,7 @@ namespace Greed.Game.Directing
                     Point position = new Point(x, y);
                     position = position.Scale(15);
 
-                    falling_objects.SetPosition(position);
+                    fallingObject.SetPosition(position);
                 }
             }
         }

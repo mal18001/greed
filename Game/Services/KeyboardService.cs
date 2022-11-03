@@ -59,7 +59,7 @@ namespace Greed.Game.Services
             return direction;
         }
 
-        public Point MoveFalling_objects()
+        public Point MoveFallingObject()
         {
             int dx = 0;
             int dy = 1;

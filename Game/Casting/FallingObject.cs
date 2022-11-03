@@ -6,14 +6,16 @@ namespace Greed.Game.Casting
     /// The responsibility of an Artifact is to provide a message about itself.
     /// </para>
     /// </summary>
-    public class Falling_objects : Actor
+    public class FallingObject : Actor
     {
         private int score = 0;
         /// <summary>
         /// Constructs a new instance of an falling object.
         /// </summary>
-        public Falling_objects()
+        public FallingObject()
         {
+            Point vel = new Point(0, -1);
+            SetVelocity(vel);
         }
 
         /// <summary>
