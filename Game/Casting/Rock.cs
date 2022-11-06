@@ -13,7 +13,6 @@ namespace Greed.Game.Casting
         /// </summary>
         public Rock()
         {
-            SetText("O");
             SetScore(-1);
         }
     }

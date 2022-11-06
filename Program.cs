@@ -57,13 +57,13 @@ namespace Greed
             //**CHANGE THE FOR STATEMENT TO A LOOP THAT
             //**WILL BE INFINITE, CHANGE SPEED BASED ON POINTS,
             //**AND END WHEN POINTS ARE TOO LOW
-
+            for (int i = 0; i < 15; i++)
             {
                 //REPLACE LINE WITH SPRITE/SYMBOL FOR ROCK OR GEM
-                string text = ((char)random.Next(33, 126)).ToString();
+                string text = ((char)(42)).ToString();
 
                 int x = random.Next(1, COLS);
-                int y = 0;
+                int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
 
@@ -77,6 +77,30 @@ namespace Greed
                 fallingObject.SetFontSize(FONT_SIZE);
                 fallingObject.SetColor(color);
                 fallingObject.SetPosition(position);
+                fallingObject.SetScore(1);
+                cast.AddActor("fallingObject", fallingObject);
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                //REPLACE LINE WITH SPRITE/SYMBOL FOR ROCK OR GEM
+                string text = ((char)(111)).ToString();
+
+                int x = random.Next(1, COLS);
+                int y = random.Next(1, ROWS);
+                Point position = new Point(x, y);
+                position = position.Scale(CELL_SIZE);
+
+                int r = random.Next(0, 256);
+                int g = random.Next(0, 256);
+                int b = random.Next(0, 256);
+                Color color = new Color(r, g, b);
+
+                FallingObject fallingObject = new FallingObject();
+                fallingObject.SetText(text);
+                fallingObject.SetFontSize(FONT_SIZE);
+                fallingObject.SetColor(color);
+                fallingObject.SetPosition(position);
+                fallingObject.SetScore(-1);
                 cast.AddActor("fallingObject", fallingObject);
             }
 

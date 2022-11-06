@@ -88,8 +88,8 @@ namespace Greed.Game.Directing
 
                 if (player.GetPosition().Equals(actor.GetPosition()))
                 {
-                    FallingObject fallingObject = (FallingObject)actor;
-                    score += fallingObject.GetScore();
+                    FallingObject fallingObjects = (FallingObject)actor;
+                    score += fallingObjects.GetScore();
                     banner.SetText($"Score: {score.ToString()}");
 
                     int x = random.Next(1, 60);
@@ -97,7 +97,7 @@ namespace Greed.Game.Directing
                     Point position = new Point(x, y);
                     position = position.Scale(15);
 
-                    fallingObject.SetPosition(position);
+                    fallingObjects.SetPosition(position);
                 }
             }
         }

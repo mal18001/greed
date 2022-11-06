@@ -1,4 +1,4 @@
-using Raylib_cs; 
+using Raylib_cs;
 using Greed.Game.Casting;
 
 
@@ -41,16 +41,6 @@ namespace Greed.Game.Services
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
                 dx = 1;
-            }
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
-            {
-                dy = -1;
-            }
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
-            {
-                dy = 1;
             }
 
             Point direction = new Point(dx, dy);
